@@ -11,6 +11,7 @@ Host                 | IP         | DESC
 smart-mysql          | 172.27.0.2 | MySql Server for OpenID/OAuth server
 smart-oauth          | 172.27.0.3 | OpenID/OAuth server
 smart-patientpicker  | 172.27.0.4 | Patient Picker for context resolver
+smart-fhir           | 172.27.0.5 | FHIR server with GT-FHIR (DSTU2) 
 
 
 Tips:
