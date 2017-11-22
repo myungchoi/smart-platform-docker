@@ -1,4 +1,6 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:alpine
+RUN apk update
+RUN apk add bash
 ADD hspc-reference-auth-server-webapp-*.war app.war
 ADD jetty-runner.jar jetty-runner.jar
 ADD jetty.xml jetty.xml
