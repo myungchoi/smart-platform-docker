@@ -1,3 +1,11 @@
+# SMART on FHIR Platform Installation
+
+This is GT-FHIR research platform installation instruction. The following open-source implementations are used (Thank you! Open-source community!!!)
+
+GT-FHIR: based on HAPI-FHIR and OMOP v5 CDM
+OAuth server: based on HSPC Auth server
+Patient picker (for context resolver): SMART on FHIR 
+
 Custom network bridge information for docker containers to support SMART on FHIR
 Docker command:
 
