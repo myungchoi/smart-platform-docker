@@ -20,7 +20,7 @@
 		<servlet-class>edu.gatech.i3l.fhir.servlet.DefaultServer</servlet-class>
 		<init-param>
 			<param-name>authServerUrl</param-name>
-			<param-value>http://172.27.0.3:8060/</param-value>
+			<param-value>http://localhost:8060/</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
