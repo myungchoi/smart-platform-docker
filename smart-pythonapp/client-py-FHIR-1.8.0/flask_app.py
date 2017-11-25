@@ -111,4 +111,4 @@ if '__main__' == __name__:
     flaskbeaker.FlaskBeaker.setup_app(app)
     
     logging.basicConfig(level=logging.DEBUG)
-    app.run(debug=True, port=8000)
+    app.run(host='0.0.0.0', debug=True, port=8000)
