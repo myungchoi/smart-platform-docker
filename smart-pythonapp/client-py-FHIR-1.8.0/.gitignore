@@ -1,0 +1,14 @@
+*.pyc
+__pycache__
+session_data
+
+# docs
+/docs
+
+# virtualenv
+/env
+/env2
+
+# IDE files
+*.sublime-*
+
