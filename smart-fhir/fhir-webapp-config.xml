@@ -11,7 +11,7 @@
 	<bean class="edu.gatech.i3l.fhir.to.TesterConfig">
 		<property name="servers">
 			<list>
-				<value>gatechrealease	, DSTU2,	Release Server,		http://localhost:8080/gt-fhir-webapp/base</value>
+				<value>gatechrealease	, DSTU2,	Release Server,		http://smart-wip.hdap.gatech.edu:8080/gt-fhir-webapp/base</value>
 								
 			</list>
 		</property>

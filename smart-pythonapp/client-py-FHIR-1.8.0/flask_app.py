@@ -4,13 +4,15 @@ import logging
 from fhirclient import client
 from fhirclient.models.medication import Medication
 from fhirclient.models.medicationorder import MedicationOrder
+from fhirclient.models.medicationadministration import MedicationAdministration
+from fhirclient.models.medicationdispense import MedicationDispense
 
 from flask import Flask, request, redirect, session
 
 # app setup
 smart_defaults = {
     'app_id': 'my_web_app',
-    'api_base': 'http://smart-wip.hdap.gatech.edu:8080/gt-fhir-webapp/base/',
+    'api_base': 'http://smart-wip.hdap.gatech.edu:8080/gt-fhir-webapp/base',
     'redirect_uri': 'http://smart-wip.hdap.gatech.edu:8000/fhir-app/',
 }
 
@@ -42,6 +44,20 @@ def _get_prescriptions(smart):
         return pres
     return None
 
+def _get_med_dispense(smart):
+    bundle = MedicationDispense.where({'patient': smart.patient_id}).perform(smart.server)
+    dispense = [be.resource for be in bundle.entry] if bundle is not None and bundle.entry is not None else None
+    if dispense is not None and len(dispense) > 0:
+        return dispense
+    return None
+
+def _get_med_administration(smart):
+    bundle = MedicationAdministration.where({'patient': smart.patient_id}).perform(smart.server)
+    adm = [be.resource for be in bundle.entry] if bundle is not None and bundle.entry is not None else None
+    if adm is not None and len(adm) > 0:
+        return adm
+    return None
+
 def _med_name(prescription):
     if prescription.medicationCodeableConcept and prescription.medicationCodeableConcept.coding[0].display:
         return prescription.medicationCodeableConcept.coding[0].display
@@ -70,6 +86,17 @@ def index():
             body += "<p>{0} prescriptions: <ul><li>{1}</li></ul></p>".format("His" if 'male' == smart.patient.gender else "Her", '</li><li>'.join([_med_name(p) for p in pres]))
         else:
             body += "<p>(There are no prescriptions for {0})</p>".format("him" if 'male' == smart.patient.gender else "her")
+        dispense = _get_med_dispense(smart)
+        if dispense is not None:
+            body += "<p>{0} medication dispenses: <ul><li>{1}</li></ul></p>".format("His" if 'male' == smart.patient.gender else "Her", '</li><li>'.join([_med_name(p) for p in dispense]))
+        else:
+            body += "<p>(There are no medication dispenses for {0})</p>".format("him" if 'male' == smart.patient.gender else "her")
+        adm = _get_med_administration(smart)
+        if adm is not None:
+            body += "<p>{0} medication administrations: <ul><li>{1}</li></ul></p>".format("His" if 'male' == smart.patient.gender else "Her", '</li><li>'.join([_med_name(p) for p in adm]))
+        else:
+            body += "<p>(There are no medication administrations for {0})</p>".format("him" if 'male' == smart.patient.gender else "her")
+
         body += """<p><a href="/logout">Change patient</a></p>"""
     else:
         auth_url = smart.authorize_url
