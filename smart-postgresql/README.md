@@ -3,8 +3,11 @@ sample patient data. To support GT-FHIR, f_* table/view exist. To support contex
 omop_v5 schema has OHDSI's OMOP v5 schema. 
 
 Before run docker, preapre the sample data in OMOPv5. Do follows,
+
 `$ cd sample_data`
+
 `$ cat datadump* > ../omop_v5_dump.tgz`
+
 This will combind the splitted data into the gzipped tar ball file. 
 
 
