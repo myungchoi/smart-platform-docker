@@ -1,3 +1,9 @@
+#Use an Debian Image to build the tgz file for the data dump
+FROM debian:jessie as dumpbuilder
+COPY sample_data /usr/local/share/sample_data
+#create the dump file
+RUN cat /usr/local/share/sample_data/datadump* > /usr/local/share/sample_data/omop_v5_dump.tgz
+
 # Use the Postgres image as a base
 FROM postgres:alpine
 
@@ -12,6 +18,8 @@ RUN chmod -v a+rwx /docker-entrypoint-initdb.d/loadDb.sh
 
 # Add omop_v5_dump.tgz to the /opt/data/ folder
 RUN mkdir -p "/opt/data"
-ADD omop_v5_dump.tgz /opt/data/omop_v5_dump.tgz
+#ADD omop_v5_dump.tgz /opt/data/omop_v5_dump.tgz
+#copy over the dump file
+COPY --from=dumpbuilder /usr/local/share/sample_data/omop_v5_dump.tgz /opt/data/omop_v5_dump.tgz
 ADD *.sql /opt/data/
 RUN chmod -R -v a+rwx /opt/data
