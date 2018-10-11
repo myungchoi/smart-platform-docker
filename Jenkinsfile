@@ -31,7 +31,7 @@ pipeline{
 
                         //Build and push the database image
                         def smartPythonAppImage = docker.build("smartpythonapp:1.0", "-f ./smart-pythonapp/Dockerfile ./smart-pythonapp")
-                        smartPythonImageApp.push('latest')
+                        smartPythonAppImage.push('latest')
                     }
                 }
             }
