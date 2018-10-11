@@ -7,7 +7,8 @@ ADD jetty.xml jetty.xml
 
 # Add auth.properites file and replace the auth.properites in the app.war file
 RUN mkdir -p WEB-INF/classes/config
-ADD auth.properties WEB-INF/classes/config/auth.properties
+#ADD auth.properties WEB-INF/classes/config/auth.properties
+ADD WEB-INF/classes/config/auth.properties WEB-INF/classes/config/auth.properties
 RUN jar uvf app.war WEB-INF/classes/config/auth.properties
 
 ENV JAVA_OPTS=""

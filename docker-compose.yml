@@ -1,0 +1,27 @@
+version: '3.0'
+
+services:
+  smart-fhir:
+    build:
+      context: ./smart-fhir
+      dockerfile: Dockerfile
+  smart-mysql:
+    build:
+      context: ./smart-mysql
+      dockerfile: Dockerfile
+  smart-oauth:
+    build:
+        context: ./smart-oauth
+        dockerfile: Dockerfile
+  smart-patientpicker:
+    build:
+        context: ./smart-patientpicker
+        dockerfile: Dockerfile
+  smart-postgresql:
+    build:
+        context: ./smart-postgresql
+        dockerfile: Dockerfile
+  smart-pythonapp:
+    build:
+        context: ./smart-pythonapp
+        dockerfile: Dockerfile
