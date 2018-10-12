@@ -10,10 +10,15 @@ from fhirclient.models.medicationdispense import MedicationDispense
 from flask import Flask, request, redirect, session
 
 # app setup
+# smart_defaults = {
+#     'app_id': 'my_web_app',
+#     'api_base': 'http://smart-wip.hdap.gatech.edu:8080/gt-fhir-webapp/base',
+#     'redirect_uri': 'http://smart-wip.hdap.gatech.edu:8000/fhir-app/',
+# }
 smart_defaults = {
     'app_id': 'my_web_app',
-    'api_base': 'http://smart-wip.hdap.gatech.edu:8080/gt-fhir-webapp/base',
-    'redirect_uri': 'http://smart-wip.hdap.gatech.edu:8000/fhir-app/',
+    'api_base': 'http://smart-fhir:8080/gt-fhir-webapp/base',
+    'redirect_uri': 'http://smart-pythonapp:8000/fhir-app/',
 }
 
 app = Flask(__name__)
