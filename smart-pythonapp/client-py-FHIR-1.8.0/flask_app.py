@@ -17,7 +17,7 @@ from flask import Flask, request, redirect, session
 # }
 smart_defaults = {
     'app_id': 'my_web_app',
-    'api_base': 'http://smart-fhir:8080/gt-fhir-webapp/base',
+    'api_base': 'http://https://gt-apps.hdap.gatech.edu/smart-fhir/gt-fhir-webapp/base',#'api_base': 'http://smart-fhir:8080/gt-fhir-webapp/base',
     'redirect_uri': 'http://smart-pythonapp:8000/fhir-app/',
 }
 

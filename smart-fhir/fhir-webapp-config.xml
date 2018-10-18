@@ -12,7 +12,7 @@
 		<property name="servers">
 			<list>
 				<!--<value>gatechrealease	, DSTU2,	Release Server,		http://smart-wip.hdap.gatech.edu:8080/gt-fhir-webapp/base</value>-->
-				<value>gatechrealease	, DSTU2,	Release Server,		http://smart-fhir:8080/gt-fhir-webapp/base</value>
+				<value>gatechrealease	, DSTU2,	Release Server,		https://gt-apps.hdap.gatech.edu/smart-fhir/gt-fhir-webapp/base</value>
 
 			</list>
 		</property>
