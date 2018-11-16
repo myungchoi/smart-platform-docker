@@ -1,0 +1,13 @@
+FROM smartonfhir/smart-launcher
+ENV NODE_ENV="production"
+ENV LAUNCHER_BASE_URL="http://apps.hdap.gatech.edu/smart-launcher"
+ENV BASE_URL="http://apps.hdap.gatech.edu/smart-launcher"
+ENV FHIR_SERVER_R3="https://apps.hdap.gatech.edu/gt-fhir/fhir"
+#ENV FHIR_SERVER_R3="http://localhost:${HAPI_PORT_STU3}/baseDstu3"
+ENV FHIR_SERVER_R3_INTERNAL="https://apps.hdap.gatech.edu/gt-fhir/fhir"
+ENV DISABLE_SANDBOXES="1"
+ENV CDS_SANDBOX_URL="https://sandbox.cds-hooks.org"
+ENV PICKER_CONFIG_R3="stu3-local"
+ENV PICKER_ORIGIN="https://apps.hdap.gatech.edu/patient-browser"
+ENV STU2_ENABLED="false"
+ENV STU3_ENABLED="true"

@@ -32,6 +32,9 @@ pipeline{
                         //Build and push the database image
                         def smartPythonAppImage = docker.build("smartpythonapp:1.0", "-f ./smart-pythonapp/Dockerfile ./smart-pythonapp")
                         smartPythonAppImage.push('latest')
+
+                        def smartLauncherImage = docker.build("smartlauncher:1.0", "-f ./smart-launcher/Dockerfile ./smart-launcher")
+                        smartLauncherImage.push('latest')
                     }
                 }
             }
@@ -44,9 +47,10 @@ pipeline{
                     rancher confirm: true, credentialId: 'gt-rancher-server', endpoint: 'https://gt-rancher.hdap.gatech.edu/v2-beta', environmentId: '1a7', environments: '', image: 'gt-build.hdap.gatech.edu/smartfhir:latest', ports: '', service: 'HDAP-SMARTonFHIR/smart-fhir', timeout: 60
                     rancher confirm: true, credentialId: 'gt-rancher-server', endpoint: 'https://gt-rancher.hdap.gatech.edu/v2-beta', environmentId: '1a7', environments: '', image: 'gt-build.hdap.gatech.edu/smartmysql:latest', ports: '', service: 'HDAP-SMARTonFHIR/smart-mysql', timeout: 60
                     rancher confirm: true, credentialId: 'gt-rancher-server', endpoint: 'https://gt-rancher.hdap.gatech.edu/v2-beta', environmentId: '1a7', environments: '', image: 'gt-build.hdap.gatech.edu/smartoauth:latest', ports: '', service: 'HDAP-SMARTonFHIR/smart-oauth', timeout: 60
-                    rancher confirm: true, credentialId: 'gt-rancher-server', endpoint: 'https://gt-rancher.hdap.gatech.edu/v2-beta', environmentId: '1a7', environments: '', image: 'gt-build.hdap.gatech.edu/smartpatientpicker:latest', ports: '', service: 'HDAP-SMARTonFHIR/smart-patientpicker', timeout: 60
                     rancher confirm: true, credentialId: 'gt-rancher-server', endpoint: 'https://gt-rancher.hdap.gatech.edu/v2-beta', environmentId: '1a7', environments: '', image: 'gt-build.hdap.gatech.edu/smartpostgresql:latest', ports: '', service: 'HDAP-SMARTonFHIR/smart-postgresql', timeout: 60
                     rancher confirm: true, credentialId: 'gt-rancher-server', endpoint: 'https://gt-rancher.hdap.gatech.edu/v2-beta', environmentId: '1a7', environments: '', image: 'gt-build.hdap.gatech.edu/smartpythonapp:latest', ports: '', service: 'HDAP-SMARTonFHIR/smart-pythonapp', timeout: 60
+                    rancher confirm: true, credentialId: 'gt-rancher-server', endpoint: 'https://gt-rancher.hdap.gatech.edu/v2-beta', environmentId: '1a7', environments: '', image: 'gt-build.hdap.gatech.edu/smartpatientpicker:latest', ports: '', service: 'HDAP-SMARTonFHIR/smart-patientpicker', timeout: 60
+                    rancher confirm: true, credentialId: 'gt-rancher-server', endpoint: 'https://gt-rancher.hdap.gatech.edu/v2-beta', environmentId: '1a7', environments: '', image: 'gt-build.hdap.gatech.edu/smartlauncher:latest', ports: '', service: 'HDAP-SMARTonFHIR/smart-launcher', timeout: 60
                 }
             }
         }

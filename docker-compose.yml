@@ -27,19 +27,8 @@ services:
       dockerfile: Dockerfile
 
   smart-launcher: # SMART Launcher ---------------------------------------------
-    image: smartonfhir/smart-launcher
-    environment:
-      NODE_ENV               : "production"
-      LAUNCHER_BASE_URL      : "http://apps.hdap.gatech.edu/smart-launcher"
-      BASE_URL               : "http://apps.hdap.gatech.edu/smart-launcher"
-      FHIR_SERVER_R3         : "https://apps.hdap.gatech.edu/gt-fhir/fhir"
-#      FHIR_SERVER_R3         : "http://localhost:${HAPI_PORT_STU3}/baseDstu3"
-      FHIR_SERVER_R3_INTERNAL: "https://apps.hdap.gatech.edu/gt-fhir/fhir"
-      DISABLE_SANDBOXES      : "1"
-      CDS_SANDBOX_URL        : "https://sandbox.cds-hooks.org"
-      PICKER_CONFIG_R3       : "stu3-local"
-      PICKER_ORIGIN          : "https://apps.hdap.gatech.edu/patient-browser"
-      STU2_ENABLED           : "false"
-      STU3_ENABLED           : "true"
+    build:
+      context: ./smart-launcher
+      dockerfile: Dockerfile
     depends_on:
       - smart-patientpicker
