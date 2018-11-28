@@ -6,7 +6,7 @@ ENV HAPI_PORT_STU2="443"
 RUN mkdir /usr/share/nginx/html/smart-patientpicker && mv /usr/share/nginx/html/config /usr/share/nginx/html/smart-patientpicker && mv /usr/share/nginx/html/examples /usr/share/nginx/html/smart-patientpicker && mv /usr/share/nginx/html/img /usr/share/nginx/html/smart-patientpicker && mv /usr/share/nginx/html/js /usr/share/nginx/html/smart-patientpicker && mv /usr/share/nginx/html/vendor /usr/share/nginx/html/smart-patientpicker
 COPY ./conf /usr/share/nginx/html/smart-patientpicker/config
 COPY ./conf /usr/share/nginx/html/smart-patientpicker/examples/config
-COPY /usr/share/nginx/html/smart-patientpicker/vendor /usr/share/nginx/html/smart-patientpicker/js/vendor
+RUN cp -r /usr/share/nginx/html/smart-patientpicker/vendor /usr/share/nginx/html/smart-patientpicker/js/vendor
 #run sed on the deployed js files to replace patient POST with GET
 RUN sed -i 's/POST/GET/g' /usr/share/nginx/html/smart-patientpicker/js/index.js
 RUN sed -i 's/POST/GET/g' /usr/share/nginx/html/smart-patientpicker/js/index.js.*.map
