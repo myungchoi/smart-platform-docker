@@ -1,7 +1,7 @@
 FROM smartonfhir/smart-launcher
 ENV NODE_ENV="production"
 ENV LAUNCHER_BASE_URL="https://gt-apps.hdap.gatech.edu/smart-launcher"
-ENV BASE_URL="http://apps.hdap.gatech.edu/smart-launcher"
+ENV BASE_URL="https://gt-apps.hdap.gatech.edu/smart-launcher"
 ENV FHIR_SERVER_R3="https://apps.hdap.gatech.edu/gt-fhir/fhir"
 #ENV FHIR_SERVER_R3="http://localhost:${HAPI_PORT_STU3}/baseDstu3"
 ENV FHIR_SERVER_R3_INTERNAL="https://apps.hdap.gatech.edu/gt-fhir/fhir"
