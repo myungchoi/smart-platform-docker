@@ -7,6 +7,7 @@ RUN mkdir /usr/share/nginx/html/smart-patientpicker && mv /usr/share/nginx/html/
 COPY ./conf /usr/share/nginx/html/smart-patientpicker/config
 COPY ./conf /usr/share/nginx/html/smart-patientpicker/examples/config
 COPY /usr/share/nginx/html/smart-patientpicker/vendor /usr/share/nginx/html/smart-patientpicker/js/vendor
+#run sed on the deployed js files to replace patient POST with GET
+RUN sed -i 's/POST/GET/g' /usr/share/nginx/html/smart-patientpicker/js/index.js
+RUN sed -i 's/POST/GET/g' /usr/share/nginx/html/smart-patientpicker/js/index.js.*.map
 RUN sh -c "envsubst < /usr/share/nginx/html/smart-patientpicker/config/stu3-local.tpl > /usr/share/nginx/html/smart-patientpicker/config/stu3-local.json5"
-#CMD ["sh" "-c" "\"envsubst < /usr/share/nginx/html/smart-patientpicker/config/stu3-local.tpl > /usr/share/nginx/html/smart-patientpicker/config/stu3-local.json5 && nginx -g 'daemon off;'\""]
-#CMD ["nginx" "-g" "'daemon off;'"]
