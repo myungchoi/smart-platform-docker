@@ -8,7 +8,7 @@ COPY ./conf /usr/share/nginx/html/smart-patientpicker/config
 #Generate config files
 RUN sh -c "envsubst < /usr/share/nginx/html/smart-patientpicker/config/stu3-local.tpl > /usr/share/nginx/html/smart-patientpicker/config/stu3-local.json5"
 #move config files to examples directory
-COPY ./conf /usr/share/nginx/html/smart-patientpicker/examples/config
+RUN cp -r /usr/share/nginx/html/smart-patientpicker/config /usr/share/nginx/html/smart-patientpicker/examples/config
 #move javascript files for the example patient picker
 RUN cp -r /usr/share/nginx/html/smart-patientpicker/vendor /usr/share/nginx/html/smart-patientpicker/js/vendor
 #run sed on the deployed js files to replace patient POST with GET
