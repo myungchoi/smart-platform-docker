@@ -12,3 +12,4 @@ ENV PICKER_ORIGIN="https://gt-apps.hdap.gatech.edu/smart-patientpicker"
 ENV STU2_ENABLED="false"
 ENV STU3_ENABLED="true"
 ENV BASE_URL="https://gt-apps.hdap.gatech.edu/smart-launcher"
+COPY ./src/index.js /app/src/index.js
