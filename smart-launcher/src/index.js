@@ -11,7 +11,6 @@ const generator    = require("./generator");
 const lib          = require("./lib");
 const launcher     = require("./launcher");
 
-
 const handleParseError = function(err, req, res, next) {
     if (err instanceof SyntaxError && err.status === 400) {
         return lib.operationOutcome(
@@ -59,10 +58,10 @@ if (process.env.NODE_ENV == "development") {
 app.use(handleXmlRequest);
 
 //provide oidc keys when requested
-app.get("/smart-launcher/.well-known/openid-configuration/", (req, res) => {
+app.get("/.well-known/openid-configuration/", (req, res) => {
     res.json({"jwks_uri": `${config.baseUrl}/keys`})
 });
-app.get("/smart-launcher/keys", (req, res) => {
+app.get("/keys", (req, res) => {
     let key = {}
     Object.keys(config.oidcKeypair).forEach(p => {
         if (p != "d") key[p] = config.oidcKeypair[p];
@@ -80,22 +79,22 @@ buildRoutePermutations = (lastSegment) => {
 }
 
 // picker
-app.get(buildRoutePermutations("/smart-launcher/picker"), (req, res) => {
+app.get(buildRoutePermutations("/picker"), (req, res) => {
     res.sendFile("picker.html", {root: './static'});
 });
 
 // encounter picker
-app.get(buildRoutePermutations("/smart-launcher/encounter"), (req, res) => {
+app.get(buildRoutePermutations("/encounter"), (req, res) => {
     res.sendFile("encounter-picker.html", {root: './static'});
 });
 
 // login
-app.get(buildRoutePermutations("/smart-launcher/login"), (req, res) => {
+app.get(buildRoutePermutations("/login"), (req, res) => {
     res.sendFile("login.html", {root: './static'});
 });
 
 // authorize
-app.get(buildRoutePermutations("/smart-launcher/authorize"), (req, res) => {
+app.get(buildRoutePermutations("/authorize"), (req, res) => {
     res.sendFile("authorize.html", {root: './static'});
 });
 
@@ -103,7 +102,7 @@ app.get(buildRoutePermutations("/smart-launcher/authorize"), (req, res) => {
 app.use(buildRoutePermutations(config.authBaseUrl), smartAuth)
 
 // Provide launch_id if the CDS Sandbox asks for it
-app.post(buildRoutePermutations("/smart-launcher/fhir/_services/smart/launch"), bodyParser.json(), (req, res) => {
+app.post(buildRoutePermutations("/fhir/_services/smart/launch"), bodyParser.json(), (req, res) => {
     res.json({
         launch_id: base64url.encode(JSON.stringify(req.body.parameters || {}))
     });
@@ -131,10 +130,10 @@ app.use(
     simpleProxy
 );
 
-app.get("/smart-launcher/launcher", launcher);
-app.use("/smart-launcher/generator", generator);
+app.get("/launcher", launcher);
+app.use("/generator", generator);
 
-app.use("/smart-launcher/env.js", (req, res) => {
+app.use("/env.js", (req, res) => {
     const out = {
         DISABLE_SANDBOXES: true, // No sandbox support by default
         PICKER_ORIGIN    : "https://patient-browser.smarthealthit.org",
@@ -167,7 +166,7 @@ app.use("/smart-launcher/env.js", (req, res) => {
     res.type("javascript").send(`var ENV = ${JSON.stringify(out, null, 4)};`);
 });
 
-app.get("/smart-launcher/public_key", (req, res) => {
+app.get("/public_key", (req, res) => {
     fs.readFile(__dirname + "/../public-key.pem", "utf8", (err, key) => {
         if (err) {
             return res.status(500).end("Failed to read public key");
