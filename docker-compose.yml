@@ -1,6 +1,15 @@
 version: '3.0'
 
 services:
+#  smart-reverse-proxy:
+#    image: traefik # The official Traefik docker image
+#    command: --api --docker # Enables the web UI and tells Traefik to listen to docker
+#    ports:
+#      - "80:80"     # The HTTP port
+#      - "8080:8080" # The Web UI (enabled by --api)
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
+
   smart-fhir:
     build:
       context: ./smart-fhir
@@ -30,5 +39,9 @@ services:
     build:
       context: ./smart-launcher
       dockerfile: Dockerfile
+#    ports:
+#      - 8888:80
+#    labels:
+#      - traefik.frontend.rule=PathPrefixStrip:/smart-launcher
     depends_on:
       - smart-patientpicker
