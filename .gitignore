@@ -3,3 +3,4 @@ temp
 *.swp
 update.sh
 ignore_folder
+.DS_Store
